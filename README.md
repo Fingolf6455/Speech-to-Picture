@@ -6,8 +6,9 @@ This is a simple Flask web application that allows users to record images and vi
 
 1. Install Python 3.7+ and `pip`
 2. Install the required dependencies by running: `pip install -r requirements.txt`
-3. Install Homebrew using  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-4. Install FFMPEG using brew install ffmpeg  in your terminal
+3. Install Homebrew using  
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+4. Install FFMPEG using "brew install ffmpeg" in your terminal
 5. Get yourself an OPENAI_API_KEY that you set in you terminal with export OPENAI_API_KEY=<"your key"> or ask me for a demo.
 6. Run the Flask app by running `python app.py`
    This should also automatically set up a SQLite database and insert sample data.
