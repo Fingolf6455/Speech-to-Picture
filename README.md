@@ -15,14 +15,14 @@ This is a simple Flask web application that allows users to record images and vi
 
 ## Usage
 
-1. Access the web application at `http://127.0.0.1:5000`
+1. Access the web application at `www.fraime.herokuapp.com"
 2. The main page allows you to record an image using your voice after allowing the browser to access you microphone (and having an openai key)
-3. To view past images, visit `http://127.0.0.1:5000/past_images`
-4. To view a specific image, visit `http://127.0.0.1:5000/image/{image_id}`, where `{image_id}` is the ID of the image you want to view.
+3. To view past images, visit `www.fraime.herokuapp.com"
+4. To view a specific image, visit `https://fraime.herokuapp.com/image/{image_id}`, where `{image_id}` is the ID of the image you want to view. There you also delete the image from the databank or edit it's name. To navigate back after doing that type in one of the other URLs mentioned
 
 ## Features
 
 - Record images using the browser
 - View past images in a list
 - View a specific image by ID
-- Watch it break down every second attempt (Just kidding ... kinda)
+- Edit or delete iamges
