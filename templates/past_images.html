@@ -1,0 +1,16 @@
+{% extends "basic.html" %}
+
+{% block content %}
+  <h1>Past Images</h1>
+  <ul>
+    {% for recording in recordings %}
+      <li>
+        <a href="{{ url_for('image', image_id=recording.id) }}">
+          <img src="{{ recording.thumbnail_url }}" alt="{{ recording.title }}">
+        </a>
+        <span>{{ recording.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
