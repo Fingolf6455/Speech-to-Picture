@@ -4,7 +4,7 @@ const recordButton = document.getElementById('recordButton');
 
 function sendAudioToServer(blob) {
   const formData = new FormData();
-  formData.append('audio', blob, 'audio.webm'); // Change 'audio.wav' to 'audio.webm'
+  formData.append('audio', blob, 'audio.webm'); 
 
   fetch('/process_audio', {
     method: 'POST',
@@ -44,7 +44,7 @@ function startRecording() {
 function stopRecording() {
   mediaRecorder.stop();
   mediaRecorder.addEventListener('stop', () => {
-    sendAudioToServer(new Blob(recordedChunks, { type: 'audio/mpeg' })); // Change 'audio/webm' to 'audio/mpeg'
+    sendAudioToServer(new Blob(recordedChunks, { type: 'audio/mpeg' })); 
     recordedChunks = [];
   });
 }
