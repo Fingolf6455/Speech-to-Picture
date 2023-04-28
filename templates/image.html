@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <h1>{{ image.title }}</h1>
-  <p>Date: {{ image.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</p>
-  <img src="{{ image.image_url }}" alt="{{ image.title }}">
-{% endblock %}
