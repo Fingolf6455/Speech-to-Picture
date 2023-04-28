@@ -1,22 +1,32 @@
-This code is a Jinja2 template for a web page that displays a list of recordings. 
-The template uses the for loop to iterate through the list of recordings passed to it, and for each recording, 
-it displays the title, the date it was posted, a thumbnail image, and a link to view the full image.
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Image</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
+
 <body>
-    {% for recording in recordings %}
-        <div>
-            <h2>{{ recording.title }}</h2>
-            <p>Date posted: {{ recording.date_posted }}</p>
-            <img src="{{ recording.thumbnail_url }}" alt="{{ recording.title }} thumbnail">
-            <p><a href="{{ url_for('image', image_id=recording.id) }}">View full image</a></p>
-        </div>
-    {% endfor %}
+    <nav class="top-menu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/past_images">Past Images</a></li>
+        </ul>
+    </nav>
+    <div class="mosaic">
+        {% for recording in recordings %}
+        <a class="mosaic-item" href="{{ url_for('image', image_id=recording.id) }}">
+            <div class="mosaic-content">
+                <h2>
+                    {{ recording.title }}
+                </h2>
+            </div>
+            <img class="mosaic-image" src="{{ recording.thumbnail_url }}" alt="{{ recording.title }} thumbnail">
+        </a>
+        {% endfor %}
+    </div>
 </body>
+
 </html>

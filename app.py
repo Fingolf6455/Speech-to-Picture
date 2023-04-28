@@ -1,8 +1,11 @@
 import os
 import sys
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from audio_processing.speech_to_text import speech_to_text
+from dalle_processing.dalle_handler import generate_image_from_text
+from models import Recording
 from forms import EditTitleForm
 
 app = Flask(__name__, static_folder='static')
@@ -18,9 +21,7 @@ app.config['SECRET_KEY'] = 'victor_is_nice'
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(project_root)
 
-from audio_processing.speech_to_text import speech_to_text
-from dalle_processing.dalle_handler import generate_image_from_text
-from models import Recording
+
 
 @app.route('/')
 def index():
@@ -41,7 +42,8 @@ def image(image_id):
 
 @app.route('/edit_image_title/<int:image_id>', methods=['POST'])
 def edit_image_title(image_id):
-    new_title = request.form.get('new_title')
+    new_title = request.form.get('title')
+
     if not new_title:
         return jsonify({'success': False, 'error': 'No new title provided'})
 
@@ -49,7 +51,15 @@ def edit_image_title(image_id):
     recording.title = new_title
     db.session.commit()
 
-    return jsonify({'success': True, 'message': 'Title updated'})
+    return redirect('/past_images', code=302)
+
+@app.route('/delete_image/<int:image_id>', methods=['POST'])
+def delete_image(image_id):
+    recording = Recording.query.get_or_404(image_id)
+    db.session.delete(recording)
+    db.session.commit()
+
+    return redirect('/past_images', code=302)
 
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
@@ -96,12 +106,7 @@ def insert_sample_data():
         db.session.add(recording)
     db.session.commit()
     
-@app.route('/delete_image/<int:image_id>', methods=['POST'])
-def delete_image(image_id):
-    recording = Recording.query.get_or_404(image_id)
-    db.session.delete(recording)
-    db.session.commit()
-    return jsonify({'success': True, 'message': 'Image deleted'})
+
 
 def create_tables():
     with app.app_context():

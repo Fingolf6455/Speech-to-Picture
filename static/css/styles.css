@@ -3,10 +3,92 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
   background-color: #f8f8f8;
+}
+
+
+/* Add styling for the top menu bar */
+.top-menu {
+  background-color: #333;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.top-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+}
+
+.top-menu ul li {
+  display: inline;
+}
+
+.top-menu ul li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.top-menu ul li a:hover {
+  background-color: #111;
+}
+
+/* Add a top padding for the container to prevent content overlap */
+.container {
+  padding-top: 60px;
+}
+
+.mosaic {
+  display: grid;
+  width: calc(100% - 20px);  
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-auto-rows: 150px;
+  gap: 10px;
+  padding: 10px;
+}
+
+.mosaic-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mosaic-image,
+.mosaic-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  transition: opacity 200ms ease-out;
+}
+
+.mosaic-image:hover {
+  opacity: 0;
+}
+
+.mosaic-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centercontainer {
+  height: --fill-available;
 }
 
 .container {
@@ -16,6 +98,7 @@ body {
   background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
+  margin-top: 30%;
 }
 
 .header {
