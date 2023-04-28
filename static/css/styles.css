@@ -10,7 +10,6 @@ body {
 }
 
 
-/* Add styling for the top menu bar */
 .top-menu {
   background-color: #333;
   position: sticky;
@@ -46,7 +45,6 @@ body {
   background-color: #111;
 }
 
-/* Add a top padding for the container to prevent content overlap */
 .container {
   padding-top: 60px;
 }
